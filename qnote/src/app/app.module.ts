@@ -5,13 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { ShareModule } from './share/share.module';
-import { EntryComponent } from './entry/entry.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EntryComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
