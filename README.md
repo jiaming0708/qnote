@@ -9,8 +9,8 @@ generate the docker image
 # angular
 ## serve
 run ng cli
-> docker run -p 4000:80 qnotefrontend ng serve
+> docker run -p 4000:4200 qnotefrontend ng serve
 
 ## build
 build ng cli
-> docker run -p 4000:80 qnotefrontend ng build -prod
+> docker run -p 4000:4200 qnotefrontend ng build -prod
