@@ -27,4 +27,5 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD ./qnote /app
 
-RUN npm install
+RUN npm install && \
+    npm rebuild node-sass --force
