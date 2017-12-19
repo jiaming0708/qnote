@@ -1,7 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { EntryService } from './entry.service';
-import { ServiceBuilder } from 'selenium-webdriver/chrome';
 
 describe('EntryService', () => {
   beforeEach(() => {
