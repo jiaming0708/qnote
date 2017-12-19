@@ -22,4 +22,11 @@ describe('EntryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have title', () => {
+    const fixture = TestBed.createComponent(EntryComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to QNote!');
+  });
 });

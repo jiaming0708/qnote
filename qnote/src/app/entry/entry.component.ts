@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EntryService } from './entry.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entry',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./entry.component.scss']
 })
 export class EntryComponent implements OnInit {
+  noteName: string;
 
-  constructor() { }
+  constructor(private entryService: EntryService, private router:Router) { }
 
   ngOnInit() {
   }
 
+  submit() {
+    this.entryService.login(this.noteName)
+      .subscribe(result => {
+        console.log(result);
+        this.router.navigate([`/${result}/note`]);
+      });
+  }
 }
