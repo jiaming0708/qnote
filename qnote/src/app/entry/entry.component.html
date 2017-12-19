@@ -1,3 +1,14 @@
-<p>
-  entry works!
-</p>
+<h1 class="welcome">
+  Welcome to QNote!
+</h1>
+<form #noteForm="ngForm" (ngSubmit)="submit()">
+  <div class="ui-g input-block">
+    <div class="ui-inputgroup">
+      <span class="ui-inputgroup-addon">Your note's name/</span>
+      <input type="text" class="ui-inputtext ui-corner-all ui-state-default ui-widget" required [(ngModel)]="noteName" name="noteName" #name="ngModel">
+      <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" [disabled]="!noteForm.form.valid">
+        <span class="ui-button-text ui-clickable">Entry</span>
+      </button>
+    </div>
+  </div>
+</form>
