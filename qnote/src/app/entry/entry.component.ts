@@ -7,18 +7,14 @@ import { Router } from '@angular/router';
   templateUrl: './entry.component.html',
   styleUrls: ['./entry.component.scss']
 })
-export class EntryComponent implements OnInit {
+export class EntryComponent {
   noteName: string;
 
   constructor(private entryService: EntryService, private router:Router) { }
 
-  ngOnInit() {
-  }
-
   submit() {
     this.entryService.login(this.noteName)
       .subscribe(result => {
-        console.log(result);
         this.router.navigate([`/${result}/note`]);
       });
   }

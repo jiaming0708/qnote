@@ -1,13 +1,14 @@
 import { EntryService } from './entry.service';
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
-
+import { async, ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
+import { Location } from '@angular/common';
 import { EntryComponent } from './entry.component';
 import { FormsModule } from '@angular/forms';
 import { EntryRoutingModule } from './entry-routing.module';
 import { Router } from '@angular/router';
-import { routes } from './entry-routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
-import { By } from 'selenium-webdriver';
+import { of } from 'rxjs/observable/of';
+import { routes } from '../fake/fake-routing.module';
+import { FakeComponent } from '../fake/fake.component';
 
 describe('EntryComponent', () => {
   let component: EntryComponent;
@@ -15,22 +16,21 @@ describe('EntryComponent', () => {
   let entryService: EntryService;
   let router: Router;
 
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
+      imports: [    
         FormsModule,
-        EntryRoutingModule,
         RouterTestingModule.withRoutes(routes)
       ],
-      declarations: [EntryComponent],
+      declarations: [EntryComponent, FakeComponent],
       providers: [EntryService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EntryComponent);
-
+    fixture = TestBed.createComponent(EntryComponent);    
     component = fixture.componentInstance;
     entryService = fixture.debugElement.injector.get(EntryService);
     router = fixture.debugElement.injector.get(Router);
@@ -46,13 +46,11 @@ describe('EntryComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to QNote!');
   });
 
-  it('should input name on input', () => {
-    const compiled = fixture.debugElement.nativeElement;
-    const noteName = compiled.query(By.name('noteName'));
-    // console.log(noteName);
-
-    // component.noteName = 'jimmy';
-    // component.submit();
-
-  });
+  it('should redirect to login', fakeAsync(() => {
+    const url = 'test';
+    spyOn(entryService, 'login').and.returnValue(of(url));
+    component.submit();
+    tick();
+    expect(router.routerState.snapshot.url).toBe(`/${url}/note`);
+  }))
 });
