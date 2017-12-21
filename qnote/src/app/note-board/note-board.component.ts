@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Note } from './note';
 
 @Component({
   selector: 'app-note-board',
@@ -6,10 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./note-board.component.scss']
 })
 export class NoteBoardComponent implements OnInit {
+  noteName: string;
+  noteColors: string[];
+  noteList: Note[];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe((param: ParamMap) => {
+      this.noteName = param.get('token');
+    });
+
+    this.noteColors = ['red', 'yellow', 'blue', 'green'];
+    this.noteList = [];
+  }
+
+  createNote(color: string) {
+    const note = {
+      Color: color
+    } as Note;
+
+    this.noteList.push(note);
   }
 
 }

@@ -1,3 +1,12 @@
-<p>
-  note-board works!
-</p>
+<header>
+  <span class="header-name">{{noteName}}</span>
+  <span class="create-note-block">
+    <span class="create-note" *ngFor="let color of noteColors" [ngStyle]="{background: color}" (click)="createNote(color)">
+    </span>
+  </span>
+</header>
+
+<div class="note-scope">
+  <div class="note-block" *ngFor="let note of noteList" [ngStyle]="{background: note.Color}">
+  </div>
+</div>

@@ -1,0 +1,35 @@
+$create_note_block_width:50px;
+$note_block_width:150px;
+
+header{
+    display: flex;
+    justify-content: space-between;
+    .header-name{
+    }
+
+    .create-note-block{
+        display: flex;
+        flex-direction: row;
+        // width: $create_note_block_width*4+20px;
+
+        .create-note{
+            margin: 0 3px;
+            width: $create_note_block_width;
+            height: $create_note_block_width;
+            border-radius: 2px;
+        }
+    }
+}
+
+.note-scope{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .note-block{
+        width: $note_block_width;
+        height: $note_block_width;
+        margin: 1px 3px;
+        border-radius: 2px;
+    }
+}
