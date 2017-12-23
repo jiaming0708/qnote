@@ -1,3 +1,5 @@
+import { NoteService } from './../share/note.service';
+import { ShareModule } from './../share/share.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,9 +8,12 @@ import { NoteBoardComponent } from './note-board.component';
 
 @NgModule({
   imports: [
-    CommonModule,
+    ShareModule,
     NoteBoardRoutingModule
   ],
-  declarations: [NoteBoardComponent]
+  declarations: [NoteBoardComponent],
+  providers: [
+    NoteService
+  ]
 })
 export class NoteBoardModule { }

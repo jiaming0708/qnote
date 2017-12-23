@@ -1,6 +1,8 @@
+import { Note } from './../share/note';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Note } from '../share/note';
+import { NoteService } from '../share/note.service';
 
 @Component({
   selector: 'app-note-board',
@@ -12,7 +14,7 @@ export class NoteBoardComponent implements OnInit {
   noteColors: string[];
   noteList: Note[];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private noteService: NoteService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((param: ParamMap) => {
@@ -28,7 +30,11 @@ export class NoteBoardComponent implements OnInit {
       Color: color
     } as Note;
 
-    this.noteList.push(note);
+    this.noteService.create(note, this.noteName)
+      .subscribe();
+    
+    this.noteService.getAll(this.noteName)
+      .subscribe(result => this.noteList = result);
   }
 
 }

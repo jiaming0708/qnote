@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Note } from '../share/note';
+import { NoteService } from '../share/note.service';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -36,7 +37,8 @@ describe('NoteBoardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [NoteBoardComponent],
       providers: [
-        {provide: ActivatedRoute, useClass: ActivatedRouteStub}
+        { provide: ActivatedRoute, useClass: ActivatedRouteStub },
+        NoteService
       ]
     })
     .compileComponents();
