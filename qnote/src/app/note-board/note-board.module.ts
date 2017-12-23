@@ -7,6 +7,7 @@ import { NoteBoardRoutingModule } from './note-board-routing.module';
 import { NoteBoardComponent } from './note-board.component';
 
 import { DragDropModule } from 'primeng/primeng';
+import { NoteBlockDirective } from '../share/note-block.directive';
 
 @NgModule({
   imports: [
@@ -14,7 +15,10 @@ import { DragDropModule } from 'primeng/primeng';
     NoteBoardRoutingModule,
     DragDropModule
   ],
-  declarations: [NoteBoardComponent],
+  declarations: [
+    NoteBlockDirective,
+    NoteBoardComponent
+  ],
   providers: [
     NoteService
   ]

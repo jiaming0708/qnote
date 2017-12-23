@@ -1,4 +1,3 @@
-import { Note } from './../share/note';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { NoteBoardComponent } from './note-board.component';
@@ -8,6 +7,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Note } from '../share/note';
 import { NoteService } from '../share/note.service';
+import { NoteBlockDirective } from '../share/note-block.directive';
+import { SharedModule } from 'primeng/primeng';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -36,7 +37,10 @@ describe('NoteBoardComponent', () => {
   let route: ActivatedRouteStub;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NoteBoardComponent],
+      declarations: [
+        NoteBoardComponent,
+        NoteBlockDirective
+      ],
       providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
         NoteService

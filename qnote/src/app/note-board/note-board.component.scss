@@ -25,11 +25,14 @@ header{
     margin-top: 10px;
     // display: flex;
     // flex-wrap: wrap;
+    position: relative;
 
     .note-block{
+        position: absolute;
+        display: inline-block;
         width: $note_block_width;
         height: $note_block_width;
-        margin: 1px 3px;
+        // margin: 1px 3px;
         border-radius: 2px;
     }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NoteBlockDirective } from './note-block.directive';
 
 @NgModule({
   imports: [
@@ -7,7 +8,6 @@ import { CommonModule } from '@angular/common';
   ],
   exports: [
     CommonModule,
-  ],
-  declarations: []
+  ]
 })
 export class ShareModule { }
