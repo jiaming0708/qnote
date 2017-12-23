@@ -5,7 +5,7 @@ import { ActivatedRoute, RouterModule, convertToParamMap, ParamMap } from '@angu
 import { of } from 'rxjs/observable/of';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Note } from './note';
+import { Note } from '../share/note';
 
 @Injectable()
 export class ActivatedRouteStub {

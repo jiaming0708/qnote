@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Note } from './note';
+import { Note } from '../share/note';
 
 @Component({
   selector: 'app-note-board',
