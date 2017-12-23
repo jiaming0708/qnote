@@ -7,6 +7,6 @@
 </header>
 
 <div class="note-scope">
-  <div class="note-block" *ngFor="let note of noteList" [ngStyle]="{background: note.Color}">
+  <div class="note-block" *ngFor="let note of noteList" [ngStyle]="{background: note.Color}" pDraggable="dd" (onDrag)="dragNote(note,$event)">
   </div>
 </div>

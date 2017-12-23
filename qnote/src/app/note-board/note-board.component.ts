@@ -37,4 +37,8 @@ export class NoteBoardComponent implements OnInit {
       .subscribe(result => this.noteList = result);
   }
 
+  dragNote(note: Note, event: DragEvent) {
+    note.PositionX = event.clientX;
+    note.PositionY = event.clientY;
+  }
 }

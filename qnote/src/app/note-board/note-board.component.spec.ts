@@ -1,3 +1,4 @@
+import { Note } from './../share/note';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { NoteBoardComponent } from './note-board.component';
@@ -67,5 +68,21 @@ describe('NoteBoardComponent', () => {
     component.createNote(color);
     expect(component.noteList.length).toBe(1);
     expect(component.noteList[0]).toEqual({ Color: color });
+  });
+
+  it('should drag a note', () => {
+    const note = {
+      Color: 'red',
+      PositionX: 50,
+      PositionY: 50
+    } as Note;
+
+    const event = new DragEvent('drag');
+    event.initMouseEvent('drag', false, false, undefined, 0, 100, 100, 100, 100, false, false, false, false, 0, undefined);
+
+    component.dragNote(note, event);
+
+    expect(note.PositionX).toEqual(event.clientX);
+    expect(note.PositionY).toEqual(event.clientY);
   });
 });

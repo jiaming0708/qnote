@@ -6,10 +6,13 @@ import { CommonModule } from '@angular/common';
 import { NoteBoardRoutingModule } from './note-board-routing.module';
 import { NoteBoardComponent } from './note-board.component';
 
+import { DragDropModule } from 'primeng/primeng';
+
 @NgModule({
   imports: [
     ShareModule,
-    NoteBoardRoutingModule
+    NoteBoardRoutingModule,
+    DragDropModule
   ],
   declarations: [NoteBoardComponent],
   providers: [
