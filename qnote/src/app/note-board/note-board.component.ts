@@ -40,10 +40,10 @@ export class NoteBoardComponent implements OnInit {
       .subscribe(result => this.noteList = result);
   }
 
-  dragNoteEnd(event: DragEvent, note: Note ) {    
+  dragNoteEnd(event: DragEvent, note: Note) {
     const parent = event.toElement.parentElement.getBoundingClientRect();
     note.PositionX = event.clientX - parent.left;
     // 因為primeng的clientY是加上clientHight，所以要先減掉，之後如果有修正在拉掉!!
-    note.PositionY = event.clientY - event.toElement.clientHeight- parent.top;
+    note.PositionY = event.clientY - event.toElement.clientHeight - parent.top;
   }
 }
