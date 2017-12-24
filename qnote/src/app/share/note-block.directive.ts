@@ -1,5 +1,4 @@
-import { Directive, OnChanges } from '@angular/core';
-import { Input, HostBinding, HostListener } from '@angular/core';
+import { Directive, EventEmitter, Input, HostBinding, HostListener, Output, ElementRef } from '@angular/core';
 import { Note } from './note';
 
 @Directive({
@@ -7,6 +6,7 @@ import { Note } from './note';
 })
 export class NoteBlockDirective {
   @Input('data') note: Note;
+  @Output() onBlurNote = new EventEmitter;
   @HostBinding('style.backgroundColor') get color() {
     return this.note.NoteColor;
   }
@@ -22,8 +22,9 @@ export class NoteBlockDirective {
   }
   @HostListener('blur') blur() {
     this.editable = false;
+    this.onBlurNote.emit(this.el.nativeElement.innerHTML);
   }
 
-  constructor() { }
+  constructor(private el:ElementRef) { }
 
 }

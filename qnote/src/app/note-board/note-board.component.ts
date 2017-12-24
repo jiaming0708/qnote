@@ -39,11 +39,11 @@ export class NoteBoardComponent implements OnInit {
     })
 
     this.noteColors = ['red', 'yellow', 'blue', 'green'];
-    // this.noteList = [];
   }
 
   createNote(color: string) {
     const note = {
+      Id: -1,
       NoteColor: color,
       NotePositionX: 0,
       NotePositionY: 0
@@ -51,9 +51,11 @@ export class NoteBoardComponent implements OnInit {
 
     this.noteService.create(note, this.token)
       .pipe(
-        concatMap(val => this.noteService.getAll(this.token))
+      concatMap(val => {
+        console.log(val);
+        return this.noteService.getAll(this.token);
+      })
       ).subscribe(result => {
-        console.log(result);
         this.noteList = result;
       });
   }
@@ -63,5 +65,14 @@ export class NoteBoardComponent implements OnInit {
     note.NotePositionX = event.clientX - parent.left;
     // 因為primeng的clientY是加上clientHight，所以要先減掉，之後如果有修正在拉掉!!
     note.NotePositionY = event.clientY - event.toElement.clientHeight - parent.top;
+
+    this.noteService.put(note, this.token)
+      .subscribe();
+  }
+
+  changeNoteContent(event: string, note: Note) {
+    note.Notecontent = event;
+    this.noteService.put(note, this.token)
+      .subscribe();
   }
 }

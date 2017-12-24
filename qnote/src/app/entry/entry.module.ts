@@ -5,12 +5,12 @@ import { FormsModule } from "@angular/forms";
 import { EntryRoutingModule } from './entry-routing.module';
 import { EntryComponent } from './entry.component';
 import { EntryService } from '../share/entry.service';
+import { ShareModule } from '../share/share.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    EntryRoutingModule,
-    FormsModule
+    ShareModule,
+    EntryRoutingModule
   ],
   declarations: [EntryComponent],
   providers:[EntryService]

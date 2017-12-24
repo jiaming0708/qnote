@@ -14,13 +14,10 @@ export class NoteService {
 
   create(note: Note, token: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/notes`, {
-      Id: -1,
-      NoteKey: token,
-      NoteColor: note.NoteColor,
-      NoteContent: note.Notecontent,
-      NotePositionX: note.NotePositionX,
-      NotePositionY: note.NotePositionY,
-      IsArchived: note.IsArchived
+      ...note,
+      NoteKey: token
+    }, {
+      responseType: 'text'
     });
     // return Observable.create(obs => {
     //   this.noteList.push(note);
@@ -32,5 +29,9 @@ export class NoteService {
   getAll(token: string): Observable<Note[]> {
     return this.http.get<Note[]>(`${this.apiUrl}/notes?key=${token}`);
     // return of(this.noteList);
+  }
+
+  put(note: Note, token: string) {
+    return this.http.put(`${this.apiUrl}/notes?key=${token}`, [note]);
   }
 }
