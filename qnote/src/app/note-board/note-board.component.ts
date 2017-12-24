@@ -52,7 +52,6 @@ export class NoteBoardComponent implements OnInit {
     this.noteService.create(note, this.token)
       .pipe(
       concatMap(val => {
-        console.log(val);
         return this.noteService.getAll(this.token);
       })
       ).subscribe(result => {

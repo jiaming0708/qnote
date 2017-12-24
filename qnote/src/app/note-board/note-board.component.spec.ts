@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { EntryService } from './../share/entry.service';
 import { environment } from './../../environments/environment.prod';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
@@ -37,6 +38,8 @@ describe('NoteBoardComponent', () => {
   let component: NoteBoardComponent;
   let fixture: ComponentFixture<NoteBoardComponent>;
   let route: ActivatedRouteStub;
+  let noteService: NoteService;
+  let entryService: EntryService;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -58,7 +61,9 @@ describe('NoteBoardComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NoteBoardComponent);
-    component = fixture.componentInstance;   
+    component = fixture.componentInstance;
+    noteService = fixture.debugElement.injector.get(NoteService);
+    entryService = fixture.debugElement.injector.get(EntryService);
     route = TestBed.get(ActivatedRoute);
     fixture.detectChanges();
   });
@@ -70,18 +75,27 @@ describe('NoteBoardComponent', () => {
   it('should have route params', fakeAsync(() => {
     const token = '123';
     const name = '456';
-    // route.testParamMap = { token: token };
-    // component.ngOnInit();
-    // tick();
-    // expect(component.noteName).toBe(name);
+    spyOn(noteService, 'getAll').and.returnValue(of([]));
+    spyOn(entryService, 'getName').and.returnValue(of(name));
+    route.testParamMap = { token: token };
+    component.ngOnInit();
+    tick();
+    expect(component.noteName).toBe(name);
   }));
 
-  it('should create a note', () => {
+  it('should create a note', async(() => {
     const color = 'red';
+    const expectNote = {
+      NoteColor: color,
+      NotePositionX: 0,
+      NotePositionY: 0
+    } as Note;
+    spyOn(noteService, 'create').and.returnValue(of([]));
+    spyOn(noteService, 'getAll').and.returnValue(of([expectNote]));
     component.createNote(color);
     expect(component.noteList.length).toBe(1);
-    expect(component.noteList[0]).toEqual({ Color: color, PositionX: 0, PositionY: 0 });
-  });
+    expect(component.noteList[0]).toEqual(expectNote);
+  }));
   
   it('should drag a note', () => {
     const note = {
