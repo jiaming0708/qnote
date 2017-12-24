@@ -1,3 +1,4 @@
+import { EntryService } from './../share/entry.service';
 import { NoteService } from './../share/note.service';
 import { ShareModule } from './../share/share.module';
 import { NgModule } from '@angular/core';
@@ -20,7 +21,8 @@ import { NoteBlockDirective } from '../share/note-block.directive';
     NoteBoardComponent
   ],
   providers: [
-    NoteService
+    NoteService,
+    EntryService
   ]
 })
 export class NoteBoardModule { }

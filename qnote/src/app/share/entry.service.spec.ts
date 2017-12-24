@@ -26,4 +26,11 @@ describe('EntryService', () => {
       expect(result).toEqual('jimmy');
     });
   }));
+
+  it('should get note name by key', inject([EntryService], (service: EntryService) => {
+    const token = 'jimmy';
+    const name = 'jimmy';
+    service.getName(token)
+      .subscribe(result => expect(result).toEqual(name));
+  }));
 });

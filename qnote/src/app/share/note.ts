@@ -1,5 +1,8 @@
 export interface Note {
-    Color: string;
-    PositionX: number;
-    PositionY: number;
+    Id: number;
+    NoteColor: string;
+    NotePositionX: number;
+    NotePositionY: number;
+    Notecontent: string;
+    IsArchived: boolean;
 }

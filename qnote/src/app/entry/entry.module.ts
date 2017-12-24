@@ -4,7 +4,7 @@ import { FormsModule } from "@angular/forms";
 
 import { EntryRoutingModule } from './entry-routing.module';
 import { EntryComponent } from './entry.component';
-import { EntryService } from './entry.service';
+import { EntryService } from '../share/entry.service';
 
 @NgModule({
   imports: [

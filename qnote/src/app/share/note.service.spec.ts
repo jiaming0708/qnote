@@ -25,7 +25,7 @@ describe('NoteService', () => {
   it('should create a note', inject([NoteService], (service: NoteService) => {
     const token = 'jimmy';
     const note = {
-      Color: 'red'
+      NoteColor: 'red'
     } as Note;
     service.create(note, token)
       .subscribe();

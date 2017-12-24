@@ -6,18 +6,27 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class NoteService {
-  noteList: Note[];
+  // noteList: Note[];
 
   constructor(private http: HttpClient, @Inject('apiUrl') private apiUrl: string) {
-    this.noteList = [];
+    // this.noteList = [];
   }
 
   create(note: Note, token: string): Observable<any> {
-    return Observable.create(obs => {
-      this.noteList.push(note);
-      obs.next('');
-      obs.complete();
+    return this.http.post(`${this.apiUrl}/notes`, {
+      Id: -1,
+      NoteKey: token,
+      NoteColor: note.NoteColor,
+      NoteContent: note.Notecontent,
+      NotePositionX: note.NotePositionX,
+      NotePositionY: note.NotePositionY,
+      IsArchived: note.IsArchived
     });
+    // return Observable.create(obs => {
+    //   this.noteList.push(note);
+    //   obs.next('');
+    //   obs.complete();
+    // });
   }
 
   getAll(token: string): Observable<Note[]> {

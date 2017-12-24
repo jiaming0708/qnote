@@ -1,4 +1,4 @@
-import { EntryService } from './entry.service';
+import { EntryService } from '../share/entry.service';
 import { async, ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 import { Location } from '@angular/common';
 import { EntryComponent } from './entry.component';
