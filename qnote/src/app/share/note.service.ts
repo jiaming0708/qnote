@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class NoteService {
-  // noteList: Note[];
+  noteList: Note[];
 
   constructor(private http: HttpClient, @Inject('apiUrl') private apiUrl: string) {
-    // this.noteList = [];
+    this.noteList = [];
   }
 
   create(note: Note, token: string): Observable<any> {

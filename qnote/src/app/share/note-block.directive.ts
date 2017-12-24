@@ -1,12 +1,14 @@
-import { Directive, EventEmitter, Input, HostBinding, HostListener, Output, ElementRef } from '@angular/core';
+import { Directive, EventEmitter, Input, HostBinding, HostListener, Output, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 import { Note } from './note';
 
 @Directive({
   selector: '[appNoteBlock]'
 })
-export class NoteBlockDirective {
+export class NoteBlockDirective implements AfterViewInit {
   @Input('data') note: Note;
   @Output() onBlurNote = new EventEmitter;
+  @ViewChild('div', {read: ElementRef}) content;
+
   @HostBinding('style.backgroundColor') get color() {
     return this.note.NoteColor;
   }
@@ -23,6 +25,10 @@ export class NoteBlockDirective {
   @HostListener('blur') blur() {
     this.editable = false;
     this.onBlurNote.emit(this.el.nativeElement.innerHTML);
+  }
+
+  ngAfterViewInit() {
+    console.log(this.content);
   }
 
   constructor(private el:ElementRef) { }

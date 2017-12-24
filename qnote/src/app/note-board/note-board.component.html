@@ -7,5 +7,8 @@
 </header>
 
 <div class="note-scope">
-  <div class="note-block" *ngFor="let note of noteList" appNoteBlock [data]="note" pDraggable="dd" (onDragEnd)="dragNoteEnd($event, note)" (onBlurNote)="changeNoteContent($event, note)">{{note.Notecontent}}</div>
+  <div class="note-block" *ngFor="let note of noteList" appNoteBlock [data]="note" pDraggable="dd" (onDragEnd)="dragNoteEnd($event, note)" (onBlurNote)="changeNoteContent($event, note)">
+    <div class="note-content" #noteContent>{{note.Notecontent}}</div>
+    <button class="note-archive">封存</button>
+  </div>
 </div>

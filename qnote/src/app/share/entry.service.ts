@@ -24,5 +24,9 @@ export class EntryService {
       .pipe(
       map(result => result['NoteName'])
       );
+    // return Observable.create(obs => {
+    //   obs.next(token);
+    //   obs.complete();
+    // });
   }
 }
