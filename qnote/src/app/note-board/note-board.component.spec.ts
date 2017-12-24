@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Note } from '../share/note';
 import { NoteService } from '../share/note.service';
 import { NoteBlockDirective } from '../share/note-block.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 @Injectable()
 export class ActivatedRouteStub {
@@ -41,9 +42,13 @@ describe('NoteBoardComponent', () => {
         NoteBoardComponent,
         NoteBlockDirective
       ],
+      imports: [
+        HttpClientModule
+      ],
       providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
-        NoteService
+        NoteService,
+        { provide: 'apiUrl', useValue: environment.url }
       ]
     })
     .compileComponents();

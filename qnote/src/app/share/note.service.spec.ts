@@ -1,12 +1,20 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { NoteService } from './note.service';
 import { Note } from './note';
+import { environment } from '../../environments/environment.prod';
 
 describe('NoteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NoteService]
+      imports: [
+        HttpClientModule
+      ],
+      providers: [
+        NoteService,
+        { provide: 'apiUrl', useValue: environment.url }
+      ]
     });
   });
 
