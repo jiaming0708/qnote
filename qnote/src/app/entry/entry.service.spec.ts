@@ -1,15 +1,23 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { EntryService } from './entry.service';
+import { environment } from '../../environments/environment';
+import { Inject } from '@angular/core';
 
 describe('EntryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EntryService]
+      imports: [
+        HttpClientModule
+      ],
+      providers: [EntryService,
+        { provide: 'apiUrl', useValue: environment.url }
+      ]
     });
   });
 
-  it('should be created', inject([EntryService], (service: EntryService) => {
+  it('should be created', inject([EntryService, 'apiUrl'], (service: EntryService, apiUrl:string) => {
     expect(service).toBeTruthy();
   }));
 

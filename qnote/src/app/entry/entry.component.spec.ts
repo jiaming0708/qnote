@@ -9,6 +9,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs/observable/of';
 import { routes } from '../fake/fake-routing.module';
 import { FakeComponent } from '../fake/fake.component';
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 describe('EntryComponent', () => {
   let component: EntryComponent;
@@ -21,10 +23,14 @@ describe('EntryComponent', () => {
     TestBed.configureTestingModule({
       imports: [    
         FormsModule,
-        RouterTestingModule.withRoutes(routes)
+        RouterTestingModule.withRoutes(routes),
+        HttpClientModule
       ],
       declarations: [EntryComponent, FakeComponent],
-      providers: [EntryService]
+      providers: [
+        EntryService,
+        { provide: 'apiUrl', useValue: environment.url }
+      ]
     })
     .compileComponents();
   }));
