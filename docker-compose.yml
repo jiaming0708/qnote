@@ -1,9 +1,14 @@
 version: '3'
 services:
-  web:
+  dev:
     build: .
     ports:
       - "4200:4200"
     command: bash -c "cd qnote && npm install && npm rebuild node-sass --force && ng serve -host 0.0.0.0"
     volumes:
       - ./:/app
+  prod:
+    build: .
+    ports:
+      - "80:4200"
+    command: ng serve -host 0.0.0.0
